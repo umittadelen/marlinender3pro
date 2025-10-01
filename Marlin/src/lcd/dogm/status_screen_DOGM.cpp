@@ -658,11 +658,15 @@ void MarlinUI::draw_status_screen() {
 
   #if HAS_PRINT_PROGRESS
     //
-    // Progress bar frame
+    // Progress bar frame with softened corners
     //
 
-    if (PAGE_CONTAINS(PROGRESS_BAR_Y, PROGRESS_BAR_Y + 3))
-      u8g.drawFrame(PROGRESS_BAR_X, PROGRESS_BAR_Y, PROGRESS_BAR_WIDTH, 4);
+    if (PAGE_CONTAINS(PROGRESS_BAR_Y, PROGRESS_BAR_Y + 3)) {
+      u8g.drawHLine(PROGRESS_BAR_X + 1, PROGRESS_BAR_Y, PROGRESS_BAR_WIDTH - 2);
+      u8g.drawHLine(PROGRESS_BAR_X + 1, PROGRESS_BAR_Y + 3, PROGRESS_BAR_WIDTH - 2);
+      u8g.drawVLine(PROGRESS_BAR_X, PROGRESS_BAR_Y + 1, 2);
+      u8g.drawVLine(PROGRESS_BAR_X + PROGRESS_BAR_WIDTH - 1, PROGRESS_BAR_Y + 1, 2);
+    }
 
     //
     // Progress bar solid part
@@ -801,8 +805,8 @@ void MarlinUI::draw_status_screen() {
   #define EXTRAS_2_BASELINE (EXTRAS_BASELINE + 3)
 
   if (PAGE_CONTAINS(EXTRAS_2_BASELINE - INFO_FONT_ASCENT, EXTRAS_2_BASELINE - 1)) {
-    set_font(FONT_MENU);
-    lcd_put_wchar(3, EXTRAS_2_BASELINE, LCD_STR_FEEDRATE[0]);
+    // Draw custom feedrate bitmap instead of font character
+    u8g.drawBitmapP(STATUS_FEEDRATE_X, EXTRAS_2_BASELINE - 7, 1, 8, custom_feedrate_icon);
 
     set_font(FONT_STATUSMENU);
     lcd_put_u8str(12, EXTRAS_2_BASELINE, i16tostr3rj(feedrate_percentage));

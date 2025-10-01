@@ -1307,6 +1307,25 @@
   #define STATUS_FAN_WIDTH 0
 #endif
 
+//
+// Custom Feedrate Icon Bitmap
+//
+#define STATUS_FEEDRATE_WIDTH  8
+#ifndef STATUS_FEEDRATE_X
+  #define STATUS_FEEDRATE_X    2  // Position from left edge
+#endif
+
+const unsigned char custom_feedrate_icon[] PROGMEM = {
+  0b00000000,
+  0b01101100,
+  0b00110110,
+  0b00011011,
+  0b00110110,
+  0b01101100,
+  0b00000000,
+  0b00000000 
+};
+
 #define _EXTRA_WIDTH (STATUS_FAN_WIDTH + STATUS_CHAMBER_WIDTH + STATUS_BED_WIDTH)
 
 //
