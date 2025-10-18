@@ -116,7 +116,6 @@ Configuration_Secure.h
 *.vcxproj
 *.vcxproj.user
 *.vcxproj.filters
-Release/
 Debug/
 __vm/
 .vs/
