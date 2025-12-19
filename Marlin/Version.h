@@ -41,12 +41,12 @@
  * here we define this default string as the date where the latest release
  * version was tagged.
  */
-#define STRING_DISTRIBUTION_DATE "2025-10-02"
+#define STRING_DISTRIBUTION_DATE "2025-12-19"
 
 /**
  * Defines a generic printer name to be output to the LCD after booting Marlin.
  */
-#define MACHINE_NAME "Ender-3 Pro BLTouch v2.0.6"
+#define MACHINE_NAME "E3P_BLT_v2.0.6"
 
 /**
  * The SOURCE_CODE_URL is the location where users will find the Marlin Source

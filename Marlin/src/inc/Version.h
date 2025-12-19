@@ -42,7 +42,7 @@
  * version was tagged.
  */
 #ifndef STRING_DISTRIBUTION_DATE
-  #define STRING_DISTRIBUTION_DATE "2023-07-18"
+  #define STRING_DISTRIBUTION_DATE "2025-12-19"
 #endif
 
 /**
@@ -73,7 +73,7 @@
  * Define a generic printer name to be output to the LCD after booting Marlin.
  */
 #ifndef MACHINE_NAME
-  #define MACHINE_NAME "3D Printer"
+  #define MACHINE_NAME "E3P_BLT"
 #endif
 
 /**
@@ -82,7 +82,7 @@
  * providing the source code to your customers.)
  */
 #ifndef SOURCE_CODE_URL
-  #define SOURCE_CODE_URL "https://github.com/MarlinFirmware/Marlin"
+  #define SOURCE_CODE_URL "https://github.com/umittadelen/marlinender3pro"
 #endif
 
 /**
@@ -97,7 +97,7 @@
    * documentation about a specific Marlin release. Displayed in the Info Menu.
    */
 #ifndef WEBSITE_URL
-  #define WEBSITE_URL "https://marlinfw.org"
+  #define WEBSITE_URL "www.umittadelen.net"
 #endif
 
 /**
