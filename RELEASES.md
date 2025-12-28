@@ -1,3 +1,6 @@
+#### firmware-20251228-191232
+- added custom status screen that shows up when printing
+
 #### firmware-20251225-224607
 - uncommented #define `NO_VOLUMETRICS`
 

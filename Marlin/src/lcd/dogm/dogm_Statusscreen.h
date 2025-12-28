@@ -1400,6 +1400,28 @@ const unsigned char custom_feedrate_icon[] PROGMEM = {
   );
 #endif
 
+#ifndef STATUS_LOGO_PRINTING_WIDTH
+  #define STATUS_LOGO_WIDTH 0
+#endif
+#ifndef STATUS_LOGO_PRINTING_BYTEWIDTH
+  #define STATUS_LOGO_PRINTING_BYTEWIDTH BW(STATUS_LOGO_PRINTING_WIDTH)
+#endif
+#if STATUS_LOGO_PRINTING_WIDTH
+  #ifndef STATUS_LOGO_PRINTING_X
+    #define STATUS_LOGO_PRINTING_X 0
+  #endif
+  #ifndef STATUS_LOGO_PRINTING_Y
+    #define STATUS_LOGO_PRINTING_Y _MIN(0U, (20 - (STATUS_LOGO_PRINTING_HEIGHT)) / 2)
+  #endif
+  #ifndef STATUS_LOGO_PRINTING_HEIGHT
+    #define STATUS_LOGO_PRINTING_HEIGHT (sizeof(status_logo_printing_bmp) / (STATUS_LOGO_PRINTING_BYTEWIDTH))
+  #endif
+  static_assert(
+    sizeof(status_logo_printing_bmp) == (STATUS_LOGO_PRINTING_BYTEWIDTH) * (STATUS_LOGO_PRINTING_HEIGHT),
+    "Status logo printing bitmap (status_logo_printing_bmp) dimensions don't match data."
+  );
+#endif
+
 //
 // Hotend Heater Bitmap starting X position
 //
