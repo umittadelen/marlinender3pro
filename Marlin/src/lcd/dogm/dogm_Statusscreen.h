@@ -746,7 +746,7 @@
     #ifdef STATUS_BED_ANIM
 
       const unsigned char status_bed_bmp[] PROGMEM = {
-        B00001111,B11111111,B11110000,
+        B00011111,B11111111,B11111000,
         B00011111,B11111111,B11111000
       };
 
@@ -761,7 +761,7 @@
         B00001000,B00100000,B10000000,
         B00000100,B00010000,B01000000,
         B00000000,B00000000,B00000000,
-        B00001111,B11111111,B11110000,
+        B00011111,B11111111,B11111000,
         B00011111,B11111111,B11111000
       };
 
@@ -938,7 +938,7 @@
     #else // !STATUS_ALT_FAN_BITMAP
 
       const unsigned char status_fan0_bmp[] PROGMEM = {
-        B00011111,B11111111,B11100000,
+        B00111111,B11111111,B11110000,
         B00111000,B00000000,B01110000,
         B00110000,B11111100,B00110000,
         B00100000,B11111100,B00010000,
@@ -955,12 +955,12 @@
         B00100000,B11111100,B00010000,
         B00110000,B11111100,B00110000,
         B00111000,B00000000,B01110000,
-        B00011111,B11111111,B11100000
+        B00111111,B11111111,B11110000
       };
 
       #if STATUS_FAN_FRAMES == 2
         const unsigned char status_fan1_bmp[] PROGMEM = {
-          B00011111,B11111111,B11100000,
+          B00111111,B11111111,B11110000,
           B00111000,B00000000,B01110000,
           B00110001,B10000110,B00110000,
           B00100011,B10000111,B00010000,
@@ -977,7 +977,7 @@
           B00100011,B10000111,B00010000,
           B00110001,B10000110,B00110000,
           B00111000,B00000000,B01110000,
-          B00011111,B11111111,B11100000
+          B00111111,B11111111,B11110000
         };
       #endif
 
@@ -1307,25 +1307,6 @@
   #define STATUS_FAN_WIDTH 0
 #endif
 
-//
-// Custom Feedrate Icon Bitmap
-//
-#define STATUS_FEEDRATE_WIDTH  8
-#ifndef STATUS_FEEDRATE_X
-  #define STATUS_FEEDRATE_X    2  // Position from left edge
-#endif
-
-const unsigned char custom_feedrate_icon[] PROGMEM = {
-  0b00000000,
-  0b01101100,
-  0b00110110,
-  0b00011011,
-  0b00110110,
-  0b01101100,
-  0b00000000,
-  0b00000000 
-};
-
 #define _EXTRA_WIDTH (STATUS_FAN_WIDTH + STATUS_CHAMBER_WIDTH + STATUS_BED_WIDTH)
 
 //
@@ -1397,28 +1378,6 @@ const unsigned char custom_feedrate_icon[] PROGMEM = {
   static_assert(
     sizeof(status_logo_bmp) == (STATUS_LOGO_BYTEWIDTH) * (STATUS_LOGO_HEIGHT),
     "Status logo bitmap (status_logo_bmp) dimensions don't match data."
-  );
-#endif
-
-#ifndef STATUS_LOGO_PRINTING_WIDTH
-  #define STATUS_LOGO_WIDTH 0
-#endif
-#ifndef STATUS_LOGO_PRINTING_BYTEWIDTH
-  #define STATUS_LOGO_PRINTING_BYTEWIDTH BW(STATUS_LOGO_PRINTING_WIDTH)
-#endif
-#if STATUS_LOGO_PRINTING_WIDTH
-  #ifndef STATUS_LOGO_PRINTING_X
-    #define STATUS_LOGO_PRINTING_X 0
-  #endif
-  #ifndef STATUS_LOGO_PRINTING_Y
-    #define STATUS_LOGO_PRINTING_Y _MIN(0U, (20 - (STATUS_LOGO_PRINTING_HEIGHT)) / 2)
-  #endif
-  #ifndef STATUS_LOGO_PRINTING_HEIGHT
-    #define STATUS_LOGO_PRINTING_HEIGHT (sizeof(status_logo_printing_bmp) / (STATUS_LOGO_PRINTING_BYTEWIDTH))
-  #endif
-  static_assert(
-    sizeof(status_logo_printing_bmp) == (STATUS_LOGO_PRINTING_BYTEWIDTH) * (STATUS_LOGO_PRINTING_HEIGHT),
-    "Status logo printing bitmap (status_logo_printing_bmp) dimensions don't match data."
   );
 #endif
 

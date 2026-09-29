@@ -520,13 +520,8 @@ void MarlinUI::draw_status_screen() {
   set_font(FONT_STATUSMENU);
 
   #if DO_DRAW_LOGO
-    if (printingIsActive() && STATUS_LOGO_PRINTING_WIDTH) {
-      if (PAGE_CONTAINS(STATUS_LOGO_PRINTING_Y, STATUS_LOGO_PRINTING_Y + STATUS_LOGO_PRINTING_HEIGHT - 1))
-        u8g.drawBitmapP(STATUS_LOGO_PRINTING_X, STATUS_LOGO_PRINTING_Y, STATUS_LOGO_PRINTING_BYTEWIDTH, STATUS_LOGO_PRINTING_HEIGHT, status_logo_printing_bmp);
-    } else {
-      if (PAGE_CONTAINS(STATUS_LOGO_Y, STATUS_LOGO_Y + STATUS_LOGO_HEIGHT - 1))
-        u8g.drawBitmapP(STATUS_LOGO_X, STATUS_LOGO_Y, STATUS_LOGO_BYTEWIDTH, STATUS_LOGO_HEIGHT, status_logo_bmp);
-    }
+    if (PAGE_CONTAINS(STATUS_LOGO_Y, STATUS_LOGO_Y + STATUS_LOGO_HEIGHT - 1))
+      u8g.drawBitmapP(STATUS_LOGO_X, STATUS_LOGO_Y, STATUS_LOGO_BYTEWIDTH, STATUS_LOGO_HEIGHT, status_logo_bmp);
   #endif
 
   #if STATUS_HEATERS_WIDTH
@@ -663,15 +658,11 @@ void MarlinUI::draw_status_screen() {
 
   #if HAS_PRINT_PROGRESS
     //
-    // Progress bar frame with softened corners
+    // Progress bar frame
     //
 
-    if (PAGE_CONTAINS(PROGRESS_BAR_Y, PROGRESS_BAR_Y + 3)) {
-      u8g.drawHLine(PROGRESS_BAR_X + 1, PROGRESS_BAR_Y, PROGRESS_BAR_WIDTH - 2);
-      u8g.drawHLine(PROGRESS_BAR_X + 1, PROGRESS_BAR_Y + 3, PROGRESS_BAR_WIDTH - 2);
-      u8g.drawVLine(PROGRESS_BAR_X, PROGRESS_BAR_Y + 1, 2);
-      u8g.drawVLine(PROGRESS_BAR_X + PROGRESS_BAR_WIDTH - 1, PROGRESS_BAR_Y + 1, 2);
-    }
+    if (PAGE_CONTAINS(PROGRESS_BAR_Y, PROGRESS_BAR_Y + 3))
+      u8g.drawFrame(PROGRESS_BAR_X, PROGRESS_BAR_Y, PROGRESS_BAR_WIDTH, 4);
 
     //
     // Progress bar solid part
@@ -810,8 +801,8 @@ void MarlinUI::draw_status_screen() {
   #define EXTRAS_2_BASELINE (EXTRAS_BASELINE + 3)
 
   if (PAGE_CONTAINS(EXTRAS_2_BASELINE - INFO_FONT_ASCENT, EXTRAS_2_BASELINE - 1)) {
-    // Draw custom feedrate bitmap instead of font character
-    u8g.drawBitmapP(STATUS_FEEDRATE_X, EXTRAS_2_BASELINE - 7, 1, 8, custom_feedrate_icon);
+    set_font(FONT_MENU);
+    lcd_put_wchar(3, EXTRAS_2_BASELINE, LCD_STR_FEEDRATE[0]);
 
     set_font(FONT_STATUSMENU);
     lcd_put_u8str(12, EXTRAS_2_BASELINE, i16tostr3rj(feedrate_percentage));
